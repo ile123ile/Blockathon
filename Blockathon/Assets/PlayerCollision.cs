@@ -9,7 +9,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.collider.tag == "Obstacle")
         {
-            movement.enabled = false;
+            Debug.Log("WTF MAN XD");
         }
         if (collision.collider.tag == "Ground")
         {
