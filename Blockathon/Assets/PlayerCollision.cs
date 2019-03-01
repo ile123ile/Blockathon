@@ -11,5 +11,9 @@ public class PlayerCollision : MonoBehaviour
         {
             movement.enabled = false;
         }
+        if (collision.collider.tag == "Ground")
+        {
+            movement.midAir = false;
+        }
     }
 }
