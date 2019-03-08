@@ -19,5 +19,10 @@ public class triggerLighting : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("We triggered the trigger :p");
+        Debug.Log("We triggered the trigger :p");
+        Debug.Log("We triggered the trigger :p");
+        Debug.Log("We triggered the trigger :p");
+        Debug.Log("We triggered the trigger :p");
+
     }
 }
