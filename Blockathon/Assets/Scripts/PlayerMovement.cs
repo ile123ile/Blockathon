@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float upwardsforce = 6000f;
     public bool midAir = false;
     public float speedLimit = 200f;
-    public float turnSpeed = 2.0f;
+    public float turnSpeed = 30.0f;
 
     private float yaw = 0.0f;
 
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     private void TurnFromMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        yaw += turnSpeed * Input.GetAxis("Mouse X");
+        yaw += turnSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X");
         Vector3 newAngle = transform.eulerAngles;
         newAngle.y = yaw;
         transform.eulerAngles = newAngle;
