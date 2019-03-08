@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public float upwardsforce = 6000f;
     public bool midAir = false;
     public float speedLimit = 200f;
+    public float turnSpeed = 2.0f;
+
+    private float yaw = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (midAir == false)
         {
-            rb.AddForce(Input.GetAxis("Horizontal") * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
-            rb.AddForce(0,0,Input.GetAxis("Vertical") * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            rb.AddRelativeForce(Input.GetAxis("Horizontal") * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
+            rb.AddRelativeForce(0,0,Input.GetAxis("Vertical") * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         
         if (Input.GetKey(KeyCode.Space) && midAir == false)
@@ -42,5 +45,16 @@ public class PlayerMovement : MonoBehaviour
             midAir = true;
         }
 
+        TurnFromMouse();
+
+    }
+
+    private void TurnFromMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        yaw += turnSpeed * Input.GetAxis("Mouse X");
+        Vector3 newAngle = transform.eulerAngles;
+        newAngle.y = yaw;
+        transform.eulerAngles = newAngle;
     }
 }
