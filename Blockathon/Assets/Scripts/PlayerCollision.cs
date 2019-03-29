@@ -16,4 +16,11 @@ public class PlayerCollision : MonoBehaviour
             movement.midAir = false;
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.tag == "Ground")
+        {
+            movement.midAir = true;
+        }
+    }
 }
