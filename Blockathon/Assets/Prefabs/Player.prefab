@@ -127,7 +127,8 @@ MonoBehaviour:
   sidewaysforce: 100
   upwardsforce: 400
   midAir: 0
-  speedLimit: 200
+  speedLimit: 20
+  turnSpeed: 30
 --- !u!114 &3457927696219661561
 MonoBehaviour:
   m_ObjectHideFlags: 0

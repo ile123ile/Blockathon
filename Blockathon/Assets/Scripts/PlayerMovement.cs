@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float sidewaysforce = 600f;
     public float upwardsforce = 6000f;
     public bool midAir = false;
-    public float speedLimit = 200f;
+    public float speedLimit = 20f;
     public float turnSpeed = 30.0f;
 
     private float yaw = 0.0f;
