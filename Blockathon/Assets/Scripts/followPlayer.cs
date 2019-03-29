@@ -23,7 +23,7 @@ public class followPlayer : MonoBehaviour
     private void TurnFromMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        pitch += turnSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y");
+        pitch -= turnSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y");
         pitch = Mathf.Min(Mathf.Max(pitch, minPitch), maxPitch);
         Vector3 newAngle = transform.eulerAngles;
         newAngle.x = pitch;

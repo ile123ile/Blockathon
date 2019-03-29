@@ -347,6 +347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1201822431}
   offset: {x: 0, y: 1, z: -5}
+  turnSpeed: 30
+  maxPitch: 80
+  minPitch: -10
 --- !u!1 &884422061
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +858,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457927696219661563, guid: 55e4163b562eeba40867d130b9114b46,
+        type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457927696219661562, guid: 55e4163b562eeba40867d130b9114b46,
+        type: 3}
+      propertyPath: speedLimit
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457927696219661562, guid: 55e4163b562eeba40867d130b9114b46,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e4163b562eeba40867d130b9114b46, type: 3}
