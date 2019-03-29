@@ -52,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void Knockback()
+    {
+        rb.AddRelativeForce(-Input.GetAxis("Horizontal") * 30 * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
+        rb.AddRelativeForce(0, 0, -Input.GetAxis("Vertical") * 30 * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+    }
+
     private void TurnFromMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;

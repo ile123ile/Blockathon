@@ -23,4 +23,12 @@ public class PlayerCollision : MonoBehaviour
             movement.midAir = true;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Obstacle")
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAA");
+            movement.Knockback();
+        }
+    }
 }
