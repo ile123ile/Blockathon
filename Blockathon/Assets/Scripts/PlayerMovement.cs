@@ -10,10 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public float sidewaysforce = 600f;
     public float upwardsforce = 6000f;
     public bool midAir = false;
-    public float speedLimit = 200f;
+    public float speedLimit = 20f;
     public float turnSpeed = 30.0f;
+    public float jumpDelay = 0.1f;
 
     private float yaw = 0.0f;
+    private float prevVelY;
+    private float jumpTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(rb.velocity.magnitude);
+        jumpTime -= Time.fixedDeltaTime;
         if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2)+Mathf.Pow(rb.velocity.z,2)) > speedLimit)
         {
             Vector3 v = rb.velocity;
@@ -39,10 +42,10 @@ public class PlayerMovement : MonoBehaviour
             rb.AddRelativeForce(0,0,Input.GetAxis("Vertical") * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         
-        if (Input.GetKey(KeyCode.Space) && midAir == false)
+        if (Input.GetKey(KeyCode.Space) && midAir == false && jumpTime <= 0)
         {
             rb.AddForce(0,upwardsforce * Time.fixedDeltaTime,0, ForceMode.Impulse);
-            midAir = true;
+            jumpTime = jumpDelay;
         }
 
         TurnFromMouse();

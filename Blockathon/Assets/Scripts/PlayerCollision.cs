@@ -5,15 +5,15 @@ public class PlayerCollision : MonoBehaviour
 {
     public PlayerMovement movement;
 
-    private void OnCollisionEnter(Collision collision)
+    public void FixedUpdate()
     {
-        if (collision.collider.tag == "Obstacle")
-        {
-            Debug.Log("WTF MAN XD");
-        }
-        if (collision.collider.tag == "Ground")
+        if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out RaycastHit hit, 1))
         {
             movement.midAir = false;
+        }
+        else
+        {
+            movement.midAir = true;
         }
     }
     private void OnCollisionExit(Collision collision)
