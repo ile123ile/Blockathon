@@ -32,8 +32,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 v = rb.velocity;
             v.y = 0;
-            v = v.normalized;
-            rb.velocity = v * speedLimit;
+            v = v.normalized * speedLimit;
+            v.y = rb.velocity.y;
+            rb.velocity = v;
         }
 
         if (midAir == false)
