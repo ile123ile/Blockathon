@@ -32,11 +32,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 v = rb.velocity;
             v.y = 0;
-            v = v.normalized;
-            rb.velocity = v * speedLimit;
+            v = v.normalized * speedLimit;
+            v.y = rb.velocity.y;
+            rb.velocity = v;
         }
 
-        if (midAir == false)
+        //if (midAir == false)
         {
             rb.AddRelativeForce(Input.GetAxis("Horizontal") * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
             rb.AddRelativeForce(0,0,Input.GetAxis("Vertical") * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
