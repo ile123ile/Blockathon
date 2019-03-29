@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = v;
         }
 
-        if (midAir == false)
+        //if (midAir == false)
         {
             rb.AddRelativeForce(Input.GetAxis("Horizontal") * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
             rb.AddRelativeForce(0,0,Input.GetAxis("Vertical") * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
