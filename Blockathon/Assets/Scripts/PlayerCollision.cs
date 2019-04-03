@@ -26,5 +26,10 @@ public class PlayerCollision : MonoBehaviour
             movement.pstate.addStatus("hurt");
         }
         
+        if (collision.collider.tag == "Obstacle")
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAA");
+            movement.Knockback();
+        }
     }
 }

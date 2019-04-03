@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private float prevVelY;
     private float jumpTime = 0.0f;
 
+
+    public float Yaw => yaw;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,13 +60,22 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void Knockback()
+    {
+        rb.AddRelativeForce(-Input.GetAxis("Horizontal") * 30 * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
+        rb.AddRelativeForce(0, 0, -Input.GetAxis("Vertical") * 30 * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+    }
+
     private void TurnFromMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
         yaw += turnSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X");
-        Vector3 newAngle = transform.eulerAngles;
-        newAngle.y = yaw;
-        transform.eulerAngles = newAngle;
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            Vector3 newAngle = transform.eulerAngles;
+            newAngle.y = yaw;
+            transform.eulerAngles = newAngle;
+        }
     }
 
 
