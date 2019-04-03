@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using System.Collections;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -15,5 +16,15 @@ public class PlayerCollision : MonoBehaviour
         {
             movement.midAir = true;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Spikes")
+        {
+            Debug.Log("spiky");
+            movement.pstate.addStatus("hurt");
+        }
+        
     }
 }

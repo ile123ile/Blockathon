@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public Rigidbody rb;
+    public PlayerState pstate;
     public float forwardforce = 1000f;
     public float sidewaysforce = 600f;
     public float upwardsforce = 6000f;
@@ -51,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
         TurnFromMouse();
 
+        // adjust to state changes
+        action(pstate);
+
     }
 
     private void TurnFromMouse()
@@ -61,4 +65,20 @@ public class PlayerMovement : MonoBehaviour
         newAngle.y = yaw;
         transform.eulerAngles = newAngle;
     }
+
+
+    private void action(PlayerState pstate)
+    {
+        List<string> state = pstate.currentState;
+        foreach (string status in state)
+        {
+            if (status == "hurt")
+            {
+                Vector3 vel = rb.velocity;
+                rb.AddForce(up
+                    wardsforce * Time.fixedDeltaTime, 0, wardsforce * Time.fixedDeltaTime);
+            }
+        }
+    }
+
 }
