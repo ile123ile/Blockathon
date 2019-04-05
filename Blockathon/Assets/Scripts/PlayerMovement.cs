@@ -6,11 +6,21 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public Rigidbody rb;
+    public PlayerState pstate = new PlayerState();
     public float forwardforce = 1000f;
     public float sidewaysforce = 600f;
     public float upwardsforce = 6000f;
     public bool midAir = false;
-    public float speedLimit = 200f;
+    public float speedLimit = 20f;
+    public float turnSpeed = 30.0f;
+    public float jumpDelay = 0.1f;
+
+    private float yaw = 0.0f;
+    private float prevVelY;
+    private float jumpTime = 0.0f;
+
+
+    public float Yaw => yaw;
 
     // Start is called before the first frame update
     void Start()
@@ -21,26 +31,65 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(rb.velocity.magnitude);
+        jumpTime -= Time.fixedDeltaTime;
         if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2)+Mathf.Pow(rb.velocity.z,2)) > speedLimit)
         {
             Vector3 v = rb.velocity;
             v.y = 0;
-            v = v.normalized;
-            rb.velocity = v * speedLimit;
+            v = v.normalized * speedLimit;
+            v.y = rb.velocity.y;
+            rb.velocity = v;
         }
 
-        if (midAir == false)
+        //if (midAir == false)
         {
-            rb.AddForce(Input.GetAxis("Horizontal") * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
-            rb.AddForce(0,0,Input.GetAxis("Vertical") * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            rb.AddRelativeForce(Input.GetAxis("Horizontal") * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
+            rb.AddRelativeForce(0,0,Input.GetAxis("Vertical") * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         
-        if (Input.GetKey(KeyCode.Space) && midAir == false)
+        if (Input.GetKey(KeyCode.Space) && midAir == false && jumpTime <= 0)
         {
             rb.AddForce(0,upwardsforce * Time.fixedDeltaTime,0, ForceMode.Impulse);
-            midAir = true;
+            jumpTime = jumpDelay;
         }
 
+        TurnFromMouse();
+
+        // adjust to state changes
+        action(pstate);
+
     }
+
+    public void Knockback()
+    {
+        rb.AddRelativeForce(-Input.GetAxis("Horizontal") * 30 * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
+        rb.AddRelativeForce(0, 0, -Input.GetAxis("Vertical") * 30 * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+    }
+
+    private void TurnFromMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        yaw += turnSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X");
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            Vector3 newAngle = transform.eulerAngles;
+            newAngle.y = yaw;
+            transform.eulerAngles = newAngle;
+        }
+    }
+
+
+    private void action(PlayerState pstate)
+    {
+        List<string> state = pstate.currentState;
+        foreach (string status in state)
+        {
+            if (status == "hurt")
+            {
+                Vector3 vel = rb.velocity;
+                rb.AddForce(upwardsforce * Time.fixedDeltaTime, 0, upwardsforce * Time.fixedDeltaTime);
+            }
+        }
+    }
+
 }
