@@ -23,7 +23,7 @@ public class PlayerCollision : MonoBehaviour
         if (collision.collider.tag == "Spikes")
         {
             Debug.Log("spiky");
-            movement.pstate.addStatus("hurt");
+            movement.pstate.AddStatus("hurt");
         }
         
         if (collision.collider.tag == "Obstacle")

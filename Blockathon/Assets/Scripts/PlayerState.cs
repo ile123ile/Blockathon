@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState
 {
     public List<string> currentState = new List<string>();
     public string[] statuses = new string[] {
         "dead", "frozen", "slowed", "hurt"
     };
 
-    private bool check(string s) {
+    private bool Check(string s) {
         for (int i = 0; i < statuses.Length; i++) {
             if (Equals(s, statuses[i])) {
                 return true;
@@ -18,9 +18,9 @@ public class PlayerState : MonoBehaviour
         return false;
     }
 
-    public void addStatus(string s)
+    public void AddStatus(string s)
     {
-        if (check(s) && !currentState.Contains(s))
+        if (Check(s) && !currentState.Contains(s))
         {
             currentState.Add(s);
         }
@@ -28,7 +28,7 @@ public class PlayerState : MonoBehaviour
 
     public void removeStatus(string s)
     {
-        if (check(s))
+        if (Check(s))
         {
             currentState.Remove(s);
         }

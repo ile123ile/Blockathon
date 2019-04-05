@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public Rigidbody rb;
-    public PlayerState pstate;
+    public PlayerState pstate = new PlayerState();
     public float forwardforce = 1000f;
     public float sidewaysforce = 600f;
     public float upwardsforce = 6000f;
