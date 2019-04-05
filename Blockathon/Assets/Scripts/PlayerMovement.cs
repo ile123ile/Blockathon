@@ -87,8 +87,7 @@ public class PlayerMovement : MonoBehaviour
             if (status == "hurt")
             {
                 Vector3 vel = rb.velocity;
-                rb.AddForce(up
-                    wardsforce * Time.fixedDeltaTime, 0, wardsforce * Time.fixedDeltaTime);
+                rb.AddForce(upwardsforce * Time.fixedDeltaTime, 0, upwardsforce * Time.fixedDeltaTime);
             }
         }
     }
