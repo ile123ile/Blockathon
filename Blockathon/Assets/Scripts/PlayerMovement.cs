@@ -22,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float Yaw => yaw;
 
+    public void setYaw(float y)
+    {
+        yaw = y;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
