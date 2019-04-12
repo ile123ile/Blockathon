@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 respawnPoint;
+    public float respawnYaw;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        Restart restarter = other.gameObject.GetComponent<Restart>();
+        if (restarter != null)
+        {
+            restarter.checkpoint = respawnPoint;
+            restarter.yaw = respawnYaw;
+        }
     }
 }
