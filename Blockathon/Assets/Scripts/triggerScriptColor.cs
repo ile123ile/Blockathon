@@ -5,25 +5,24 @@ using UnityEngine;
 public class triggerScript : MonoBehaviour
 {
     StatesController s;
-    int[] colorIndexArr = {0, 1, 2, 3, 4, 5};
     int colorIndex;
 
     //enters this method of something hits the trigger
     private void OnTriggerEnter(Collider col)
-    { 
+    {
         if (col.gameObject.GetComponent<PlayerCollision>() != null)
         {
             colorIndex = s.colorid;
 
-            if(colorIndex++ > colorIndexArr.Length)
+            if (colorIndex + 1 > s.states.Length)
             {
-                colorIndex = 0;
+                colorIndex = -1;
             }
-            else
-            {
-                colorIndex++;
-                s.colorid = colorIndex;
-            }
+
+            colorIndex++;
+            s.colorid = colorIndex;
+
+
 
 
             //    //change light
@@ -49,15 +48,16 @@ public class triggerScript : MonoBehaviour
 
         }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
