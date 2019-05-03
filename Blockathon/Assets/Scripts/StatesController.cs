@@ -29,7 +29,7 @@ public class StatesController : MonoBehaviour
         foreach (LightState e in lightstates)
         {
             Renderer rend = e.gameObject.GetComponent<Renderer>();
-            if (e.colorid != this.colorid)
+            if (e.colorid != this.colorid || e.timeLeft > 0)
             {
                 rend.enabled = true;
             }
