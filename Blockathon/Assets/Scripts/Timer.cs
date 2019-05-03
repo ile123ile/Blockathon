@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     public GameObject textObject;
     private TextMeshProUGUI text;
-    private float timeElapsed;
+    public static float timeElapsed;
 
     // Start is called before the first frame update
     void Start()
