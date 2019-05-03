@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sc: {fileID: 1330137851}
-  colorToSet: 0
+  colorToSet: -3
 --- !u!1 &698346213
 GameObject:
   m_ObjectHideFlags: 0
