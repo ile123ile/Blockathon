@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,10 @@ public class StatesController : MonoBehaviour
 {
     Light lt;
     public int colorid;
-    State[] states = { new State(0, Color.red), new State(1, Color.green), 
+
+    public State[] states = { new State(0, Color.red), new State(1, Color.green), 
         new State(2, Color.blue), new State(3, Color.yellow), new State(4, Color.cyan), new State(5, Color.magenta)};
+
     LightState[] lightstates;
 
     // Start is called before the first frame update
@@ -26,7 +29,7 @@ public class StatesController : MonoBehaviour
         foreach (LightState e in lightstates)
         {
             Renderer rend = e.gameObject.GetComponent<Renderer>();
-            if (e.colorid == this.colorid)
+            if (e.colorid != this.colorid)
             {
                 rend.enabled = true;
             }
@@ -37,7 +40,8 @@ public class StatesController : MonoBehaviour
         }
     }
 
-    struct State
+    [System.Serializable]
+    public struct State
     {
         public int id;
         public Color color;

@@ -8,7 +8,8 @@ public class PlayerCollision : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out RaycastHit hit, 1))
+        if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out RaycastHit hit, 1)
+            && !hit.collider.isTrigger)
         {
             movement.midAir = false;
         }

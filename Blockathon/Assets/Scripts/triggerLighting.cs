@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class triggerLighting : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public StatesController sc;
+    public int colorToSet = -3;
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("We triggered the trigger :p");
-        Debug.Log("We triggered the trigger :p");
-        Debug.Log("We triggered the trigger :p");
-        Debug.Log("We triggered the trigger :p");
-        Debug.Log("We triggered the trigger :p");
-
+        if (other.GetComponent<PlayerMovement>() != null)
+        {
+            if (colorToSet >= 0)
+            {
+                sc.colorid = colorToSet;
+            }
+            else
+            {
+                sc.colorid += 1;
+                if (sc.colorid >= -colorToSet)
+                {
+                    sc.colorid = 0;
+                }
+            }
+        }
     }
 }
