@@ -202,7 +202,7 @@ Transform:
   m_LocalScale: {x: 11.5, y: 1, z: 11.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698346213
 GameObject:
@@ -354,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 9182070658339764171, guid: fbccb3e90810c1a4490bad8db1cfc34c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9182070658339764171, guid: fbccb3e90810c1a4490bad8db1cfc34c,
         type: 3}
@@ -540,6 +540,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652309986169859058, guid: 55e4163b562eeba40867d130b9114b46,
+        type: 3}
+      propertyPath: deathHeight
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172963821449370916, guid: 55e4163b562eeba40867d130b9114b46,
+        type: 3}
+      propertyPath: checkpoint.x
+      value: 53.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172963821449370916, guid: 55e4163b562eeba40867d130b9114b46,
+        type: 3}
+      propertyPath: checkpoint.z
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e4163b562eeba40867d130b9114b46, type: 3}
