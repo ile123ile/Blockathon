@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     public GameObject textObject;
     private TextMeshProUGUI text;
-    private float timeElapsed;
+    public static float timeElapsed;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +20,8 @@ public class Timer : MonoBehaviour
     void FixedUpdate()
     {
         timeElapsed += Time.fixedDeltaTime;
-        int minutes = Mathf.FloorToInt(timeElapsed) / 60;
-        int seconds = Mathf.FloorToInt(timeElapsed - minutes);
+        int seconds = Mathf.FloorToInt(timeElapsed) % 60;
+        int minutes = Mathf.FloorToInt(timeElapsed - seconds);
         string timeString = minutes + ":";
         if (seconds < 10)
         {
