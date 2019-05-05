@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd39d232479745a78ed3233e7ef6bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScene: Level2
+  startScene: Level=)-Eli
 --- !u!114 &265205760
 MonoBehaviour:
   m_ObjectHideFlags: 0
