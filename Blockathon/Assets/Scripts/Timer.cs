@@ -20,8 +20,8 @@ public class Timer : MonoBehaviour
     void FixedUpdate()
     {
         timeElapsed += Time.fixedDeltaTime;
-        int seconds = Mathf.FloorToInt(timeElapsed) % 60;
-        int minutes = Mathf.FloorToInt(timeElapsed - seconds);
+        int minutes = Mathf.FloorToInt(timeElapsed/60f);
+        int seconds = Mathf.FloorToInt(timeElapsed) - minutes*60;
         string timeString = minutes + ":";
         if (seconds < 10)
         {
