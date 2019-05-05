@@ -6,9 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public Rigidbody rb;
-    public PlayerState pstate = new PlayerState();
     public float forwardforce = 1000f;
-    public float sidewaysforce = 600f;
+    public float sidewaysforce = 20f;
     public float upwardsforce = 6000f;
     public bool midAir = false;
     public float speedLimit = 20f;
@@ -39,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         jumpTime -= Time.fixedDeltaTime;
         if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2)+Mathf.Pow(rb.velocity.z,2)) > speedLimit)
         {
+            Debug.Log("too fast!");
             Vector3 v = rb.velocity;
             v.y = 0;
             v = v.normalized * speedLimit;
@@ -60,16 +60,14 @@ public class PlayerMovement : MonoBehaviour
 
         TurnFromMouse();
 
-        // adjust to state changes
-        action(pstate);
-
     }
 
-    public void Knockback()
+    public void Knockback(int scale)
     {
-        rb.AddRelativeForce(-Input.GetAxis("Horizontal") * 30 * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
-        rb.AddRelativeForce(0, 0, -Input.GetAxis("Vertical") * 30 * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        rb.AddRelativeForce(-Input.GetAxis("Horizontal") * scale * sidewaysforce * Time.fixedDeltaTime, 0, 0, ForceMode.VelocityChange);
+        rb.AddRelativeForce(0, 0, -Input.GetAxis("Vertical") * scale * sidewaysforce * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
+
 
     private void TurnFromMouse()
     {
@@ -83,18 +81,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-    private void action(PlayerState pstate)
-    {
-        List<string> state = pstate.currentState;
-        foreach (string status in state)
-        {
-            if (status == "hurt")
-            {
-                Vector3 vel = rb.velocity;
-                rb.AddForce(upwardsforce * Time.fixedDeltaTime, 0, upwardsforce * Time.fixedDeltaTime);
-            }
-        }
-    }
 
 }

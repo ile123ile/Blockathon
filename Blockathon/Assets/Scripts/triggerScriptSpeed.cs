@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class triggerScriptSpeed : MonoBehaviour
 {
     PlayerMovement p;
-    Random rnd = new Random();
+    System.Random rnd = new System.Random();
     float speed; //tbh is it even worth storing this if we're just going to update each time the ball collides it
 
     private void OnTriggerEnter(Collider col)
@@ -50,5 +51,5 @@ public class triggerScriptSpeed : MonoBehaviour
         {
 
         }
-    }
+    
 }

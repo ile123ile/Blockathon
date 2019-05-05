@@ -5,7 +5,14 @@ using UnityEngine;
 public class EnemyFollowPlayer : MonoBehaviour
 {
     public GameObject Player;
-    public float movementSpeed = 4;
+    public float movementSpeed = 7;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+    // Update is called once per frame
     void Update()
     {
         transform.LookAt(Player.transform);
