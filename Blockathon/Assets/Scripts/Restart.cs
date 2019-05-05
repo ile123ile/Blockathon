@@ -25,5 +25,6 @@ public class Restart : MonoBehaviour
     {
         transform.position = checkpoint;
         gameObject.GetComponent<PlayerMovement>().setYaw(yaw);
+        gameObject.GetComponent<Rigidbody>().velocity = new Vector3();
     }
 }
